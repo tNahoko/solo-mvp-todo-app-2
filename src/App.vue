@@ -1,17 +1,43 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    Welcome to Todo-ista
+    <CreateTodo v-on:create-todo="createTodo" />
+    <TodoList v-bind:todos="todos" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TodoList from './components/TodoList.vue';
+import CreateTodo from './components/CreateTodo';
+import axios from 'axios';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    TodoList,
+    CreateTodo,
+  },
+  data() {
+    return {
+      todos: []
+    }
+  },
+  methods: {
+    createTodo(newTodo) {
+      this.todos.push(newTodo);
+    },
+  },
+  async created() {
+    try {
+      const response = await axios.get('https://todo-st.herokuapp.com/api/alldata');
+      let data = response.data;
+      for (let i = 0; i < data.length; i++) {
+        data[i].date = data[i].date.slice(0, 10);
+      }
+      this.todos = data;
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
 </script>
