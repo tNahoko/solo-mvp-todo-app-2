@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    Welcome to Todo-ista
+  <h1 id="header">
+    Todo-ista
+  </h1>
     <CreateTodo v-on:create-todo="createTodo" />
     <TodoList v-bind:todos="todos" />
   </div>

@@ -1,28 +1,25 @@
 <template>
 <div class="todo">
-  <div class='ui centered card'>
-    <div class='header'>
-        {{ todo.title }}
-    </div>
-    <div class='meta'>
-        {{ todo.project }}
-    </div>
-  </div>
   <div class="content">
-        <div class='field'>
-          <label>Description: </label>
-          <input type='text' v-model="todo.desc" >
-        </div>
-        <div class='field'>
-          <label>Due on: </label>
-          <input type='text' v-model="todo.date" >
-        </div>
-        <div class='field'>
-          <label>Status: </label>
-          <input type='text' v-model="todo.status" >
-        </div>
-    </div>
-    </div>
+      <div class='field'>
+        <label> {{todo.desc}}</label>
+      </div>
+      <div class='field'>
+        <label>Due on: {{todo.date}}</label>
+      </div>
+      <div class='field'>
+        <label>Status: {{todo.status}}</label>
+      <div class='buttons'>
+        <button class='button' v-on:click="markDone">
+          Done ✅
+        </button>
+        <button class='button' v-on:click="markCancel">
+          Delete ❌
+        </button>
+      </div>
+      </div>
+  </div>
+</div>
 </template>
 
 <script type="text/javascript">
@@ -32,6 +29,14 @@
       completeTodo(todo) {
         this.$emit('complete-todo', todo);
       },
+      markDone() {
+      // get id or desc of the item
+      // make a patch request to update status
+      },
+      markCancel() {
+      // get id or desc of the item
+      // make a patch request to update status
+      }
     },
   };
 </script>
@@ -39,5 +44,12 @@
 <style scoped>
 .content {
   padding: 10px;
+  margin: 20px;
+  border-style: ;
+  background:#ffffa5;
+  font-size:15px;
+}
+.button {
+  margin: 5px;
 }
 </style>

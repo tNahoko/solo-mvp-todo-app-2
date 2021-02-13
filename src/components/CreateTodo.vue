@@ -1,7 +1,7 @@
 <template>
-  <div class='ui basic content center aligned segment'>
-    <button class='ui basic button icon' v-on:click="openForm" v-show="!isCreating">
-      <i class='plus icon'>+ NEW</i>
+  <div>
+    <button class='newButton' v-on:click="openForm" v-show="!isCreating">
+      <i class='plus icon'>Click Here to Create Item</i>
     </button>
     <div class='ui centered card' v-show="isCreating">
       <div class='content'>
@@ -59,3 +59,16 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.newButton {
+  background-color: Green;
+  color: white;
+  transition-duration: 0.4s;
+}
+
+.newButton:hover {
+  background-color: lightgreen;
+  color: black;
+}
+</style>
