@@ -46,13 +46,11 @@ export default {
     },
     sendForm() {
       if (this.descText.length > 0) {
-        const taskDesc = this.descText;
-        const dueDate = this.dateText;
-        this.$emit('create-todo', {
-          taskDesc,
-          dueDate,
-          status: "pending",
-        });
+        const newItem = {
+          desc: this.descText,
+          date: this.dateText
+        };
+        this.$emit('create-todo', newItem);
         this.descText = '';
         this.dateText = '';
         this.isCreating = false;
