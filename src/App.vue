@@ -27,16 +27,17 @@ export default {
       console.log(newItem)
       const response = await axios.post('https://todo-st.herokuapp.com/api', newItem);
       console.log(response)
-      // let data = response.data;
-      // for (let i = 0; i < data.length; i++) {
-      //   data[i].date = data[i].date.slice(0, 10);
-      // }
-      // this.todos = data;
+      let data = response.data;
+      for (let i = 0; i < data.length; i++) {
+        data[i].date = data[i].date.slice(0, 10);
+      }
+      this.todos = data;
     },
   },
   async created() {
     try {
       const response = await axios.get('https://todo-st.herokuapp.com/api');
+      // const response = await axios.get('http://localhost:9000/api');
       let data = response.data;
       for (let i = 0; i < data.length; i++) {
         data[i].date = data[i].date.slice(0, 10);
