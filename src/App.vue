@@ -27,7 +27,7 @@ export default {
   methods: {
     createTodo: async function (newItem) {
       console.log(newItem)
-      const response = await axios.post('https://todo-st.herokuapp.com/api', newItem);
+      const response = await axios.post('https://todo-ista.herokuapp.com/api', newItem);
       console.log(response)
       let data = response.data;
       for (let i = 0; i < data.length; i++) {
@@ -37,7 +37,7 @@ export default {
     },
     markDone: async function (id)  {
       // make a patch request to update status
-      const response = await axios.patch(`https://todo-st.herokuapp.com/api/done/${id}`);
+      const response = await axios.patch(`https://todo-ista.herokuapp.com/api/done/${id}`);
       let data = response.data;
       for (let i = 0; i < data.length; i++) {
         data[i].date = data[i].date.slice(0, 10);
@@ -47,7 +47,7 @@ export default {
   },
   async created() {
     try {
-      const response = await axios.get('https://todo-st.herokuapp.com/api');
+      const response = await axios.get('https://todo-ista.herokuapp.com/api');
       let data = response.data;
       for (let i = 0; i < data.length; i++) {
         data[i].date = data[i].date.slice(0, 10);
