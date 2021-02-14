@@ -1,5 +1,5 @@
 <template>
-<div class="todo">
+<div class="todo-container">
   <div class="content">
       <div class='field'>
         <label> {{todo.desc}}</label>
@@ -45,9 +45,11 @@
 .content {
   padding: 10px;
   margin: 20px;
-  border-style: ;
   background:#ffffa5;
   font-size:15px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .button {
   margin: 5px;
