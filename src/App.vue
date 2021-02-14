@@ -4,7 +4,7 @@
     Todo-ista
   </h1>
     <CreateTodo v-on:create-todo="createTodo" />
-    <TodoList v-bind:todos="todos" v-on:mark-done="markDone" />
+    <TodoList v-bind:todos="todos" v-on:mark-done="markDone" v-on:delete-item="deleteItem" />
   </div>
 </template>
 
@@ -38,6 +38,14 @@ export default {
     markDone: async function (id)  {
       // make a patch request to update status
       const response = await axios.patch(`https://todo-ista.herokuapp.com/api/done/${id}`);
+      let data = response.data;
+      for (let i = 0; i < data.length; i++) {
+        data[i].date = data[i].date.slice(0, 10);
+      }
+      this.todos = data;
+    },
+    deleteItem: async function (id)  {
+      const response = await axios.delete(`https://todo-ista.herokuapp.com/api/${id}`);
       let data = response.data;
       for (let i = 0; i < data.length; i++) {
         data[i].date = data[i].date.slice(0, 10);

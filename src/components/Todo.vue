@@ -13,7 +13,7 @@
         <button class='button' v-on:click="markDone">
           Done ✅
         </button>
-        <button class='button' v-on:click="markCancel">
+        <button class='button' v-on:click="deleteItem">
           Delete ❌
         </button>
       </div>
@@ -32,9 +32,8 @@
       markDone () {
         this.$emit('mark-done', this.todo.id);
       },
-      markCancel() {
-      // get id or desc of the item
-      // make a patch request to update status
+      deleteItem() {
+        this.$emit('delete-item', this.todo.id);
       }
     },
   };
