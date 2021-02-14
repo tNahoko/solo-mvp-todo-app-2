@@ -29,9 +29,8 @@
       completeTodo(todo) {
         this.$emit('complete-todo', todo);
       },
-      markDone() {
-      // get id or desc of the item
-      // make a patch request to update status
+      markDone () {
+        this.$emit('mark-done', this.todo.id);
       },
       markCancel() {
       // get id or desc of the item

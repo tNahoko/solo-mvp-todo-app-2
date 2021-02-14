@@ -3,7 +3,7 @@
     <div>
     <p class="tasks">Completed Tasks: {{todos.filter(todo => {return todo.status === "done"}).length}}</p>
     <p class="tasks">Pending Tasks: {{todos.filter(todo => {return todo.status === "pending"}).length}}</p>
-    <Todo v-on:complete-todo="completeTodo" v-for="(todo, name, index) in todos" v-bind:key="index" v-bind:todo.sync="todo"></todo>
+    <Todo v-for="(todo, name, index) in todos" v-bind:key="index" v-bind:todo.sync="todo" v-on="$listeners"></todo>
   </div>
   </div>
 </template>
@@ -15,13 +15,7 @@ export default {
   props: ['todos'],
   components: {
     Todo,
-  },
-  methods: {
-    completeTodo(todo) {
-      const todoIndex = this.todos.indexOf(todo);
-      this.todos[todoIndex].done = true;
-    },
-  },
+  }
 };
 
 </script>

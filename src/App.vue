@@ -4,7 +4,7 @@
     Todo-ista
   </h1>
     <CreateTodo v-on:create-todo="createTodo" />
-    <TodoList v-bind:todos="todos" />
+    <TodoList v-bind:todos="todos" v-on:mark-done="markDone" />
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
     }
   },
   methods: {
-    createTodo: async (newItem) => {
+    createTodo: async function (newItem) {
       console.log(newItem)
       const response = await axios.post('https://todo-st.herokuapp.com/api', newItem);
       console.log(response)
@@ -35,11 +35,19 @@ export default {
       }
       this.todos = data;
     },
+    markDone: async function (id)  {
+      // make a patch request to update status
+      const response = await axios.patch(`https://todo-st.herokuapp.com/api/done/${id}`);
+      let data = response.data;
+      for (let i = 0; i < data.length; i++) {
+        data[i].date = data[i].date.slice(0, 10);
+      }
+      this.todos = data;
+    }
   },
   async created() {
     try {
       const response = await axios.get('https://todo-st.herokuapp.com/api');
-      // const response = await axios.get('http://localhost:9000/api');
       let data = response.data;
       for (let i = 0; i < data.length; i++) {
         data[i].date = data[i].date.slice(0, 10);
